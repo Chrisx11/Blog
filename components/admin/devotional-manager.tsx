@@ -93,9 +93,17 @@ export function DevotionalManager({ overrideMode, setOverrideMode }: { overrideM
     setEditingDevotional(null);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (confirm("Tem certeza que deseja excluir este devocional?")) {
-      setDevotionals(devotionals.filter((d) => d.id !== id))
+      const { error } = await supabase
+        .from("devotionals")
+        .delete()
+        .eq("id", id);
+      if (error) {
+        setError("Erro ao excluir devocional: " + error.message);
+        return;
+      }
+      setDevotionals(devotionals.filter((d) => d.id !== id));
     }
   }
 
