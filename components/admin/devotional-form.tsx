@@ -36,7 +36,7 @@ export function DevotionalForm({ devotional, onSubmit, onCancel }: DevotionalFor
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 bg-card p-4 sm:p-6 rounded-lg shadow-lg border border-border/50">
+    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 bg-card p-4 sm:p-6 rounded-xl shadow-lg border border-border/50 max-w-4xl mx-auto">
       <div className="space-y-2">
         <Label htmlFor="title">Título *</Label>
         <Input
@@ -45,7 +45,7 @@ export function DevotionalForm({ devotional, onSubmit, onCancel }: DevotionalFor
           onChange={(e) => handleChange("title", e.target.value)}
           placeholder="Digite o título do devocional"
           required
-          className="shadow-sm text-sm sm:text-base"
+          className="shadow-sm text-sm sm:text-base rounded-lg"
         />
       </div>
 
@@ -56,7 +56,7 @@ export function DevotionalForm({ devotional, onSubmit, onCancel }: DevotionalFor
           value={formData.verse}
           onChange={(e) => handleChange("verse", e.target.value)}
           placeholder="Ex: João 3:16"
-          className="shadow-sm text-sm sm:text-base"
+          className="shadow-sm text-sm sm:text-base rounded-lg"
         />
       </div>
 
@@ -69,7 +69,7 @@ export function DevotionalForm({ devotional, onSubmit, onCancel }: DevotionalFor
           placeholder="Digite o conteúdo do devocional (use duas quebras de linha para separar parágrafos)"
           rows={8}
           required
-          className="shadow-sm text-sm sm:text-base resize-none"
+          className="shadow-sm text-sm sm:text-base resize-none rounded-lg"
         />
       </div>
 
@@ -84,7 +84,7 @@ export function DevotionalForm({ devotional, onSubmit, onCancel }: DevotionalFor
             value={formData.date}
             onChange={(e) => handleChange("date", e.target.value)}
             required
-            className="shadow-sm text-sm sm:text-base"
+            className="shadow-sm text-sm sm:text-base rounded-lg"
           />
         </div>
 
@@ -95,20 +95,20 @@ export function DevotionalForm({ devotional, onSubmit, onCancel }: DevotionalFor
             value={formData.author}
             onChange={(e) => handleChange("author", e.target.value)}
             placeholder="Nome do autor"
-            className="shadow-sm text-sm sm:text-base"
+            className="shadow-sm text-sm sm:text-base rounded-lg"
           />
         </div>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
-        <Button type="submit" className="flex-1 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm sm:text-base">
+        <Button type="submit" className="flex-1 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm sm:text-base rounded-lg">
           {devotional ? "Atualizar" : "Criar"} Devocional
         </Button>
         <Button
           type="button"
           variant="outline"
           onClick={onCancel}
-          className="flex-1 bg-transparent shadow-md hover:shadow-lg transition-all duration-300 text-sm sm:text-base"
+          className="flex-1 bg-transparent shadow-md hover:shadow-lg transition-all duration-300 text-sm sm:text-base rounded-lg"
         >
           Cancelar
         </Button>

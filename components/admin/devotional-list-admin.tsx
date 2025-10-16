@@ -26,9 +26,9 @@ export function DevotionalListAdmin({ devotionals, onEdit, onDelete }: Devotiona
       {devotionals.map((devotional) => (
         <div
           key={devotional.id}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 p-3 sm:p-4 border border-border rounded-lg bg-card hover:bg-accent/50 transition-colors"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 p-3 sm:p-4 border border-border rounded-xl bg-card hover:bg-accent/50 transition-all duration-300 shadow-sm hover:shadow-md"
         >
-          <div className="relative w-full sm:w-32 h-32 sm:h-24 flex-shrink-0 rounded overflow-hidden">
+          <div className="relative w-full sm:w-32 h-32 sm:h-24 flex-shrink-0 rounded-lg overflow-hidden shadow-sm">
             <Image
               src={devotional.image_url || devotional.imageUrl || "/placeholder.svg"}
               alt={devotional.title}
@@ -47,7 +47,7 @@ export function DevotionalListAdmin({ devotionals, onEdit, onDelete }: Devotiona
           </div>
 
           <div className="flex flex-row sm:flex-col gap-2 sm:gap-2">
-            <Button size="sm" variant="outline" onClick={() => onEdit(devotional)} className="gap-1 sm:gap-2 flex-1 sm:flex-none text-xs sm:text-sm">
+            <Button size="sm" variant="outline" onClick={() => onEdit(devotional)} className="gap-1 sm:gap-2 flex-1 sm:flex-none text-xs sm:text-sm rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
               <Edit className="h-3 w-3" />
               <span className="sm:inline">Editar</span>
             </Button>
@@ -55,7 +55,7 @@ export function DevotionalListAdmin({ devotionals, onEdit, onDelete }: Devotiona
               size="sm"
               variant="outline"
               onClick={() => onDelete(devotional.id)}
-              className="gap-1 sm:gap-2 text-destructive hover:text-destructive flex-1 sm:flex-none text-xs sm:text-sm"
+              className="gap-1 sm:gap-2 text-destructive hover:text-destructive flex-1 sm:flex-none text-xs sm:text-sm rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
             >
               <Trash2 className="h-3 w-3" />
               <span className="sm:inline">Excluir</span>

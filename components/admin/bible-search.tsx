@@ -121,15 +121,15 @@ export function BibleSearch({ onVerseSelect }: BibleSearchProps) {
   }
 
   return (
-    <div className="space-y-4 sm:space-y-6">
-      <Card>
-        <CardHeader className="p-4 sm:p-6">
-          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+    <div className="space-y-4 sm:space-y-6 max-w-4xl mx-auto">
+      <Card className="shadow-lg border-border/50">
+        <CardHeader className="p-4 sm:p-6 pb-4">
+          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl font-semibold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
             <BookOpen className="h-4 w-4 sm:h-5 sm:w-5" />
             Busca Rápida de Versículos
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6">
+        <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6 pt-0">
           {/* Busca por texto */}
           <div className="space-y-2">
             <label className="text-sm font-medium">Buscar por texto ou referência:</label>
@@ -141,7 +141,7 @@ export function BibleSearch({ onVerseSelect }: BibleSearchProps) {
                 onKeyDown={(e) => e.key === "Enter" && searchVerses()}
                 className="text-sm sm:text-base"
               />
-              <Button onClick={searchVerses} disabled={isLoading} className="w-full sm:w-auto">
+              <Button onClick={searchVerses} disabled={isLoading} className="w-full sm:w-auto rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
                 <Search className="h-4 w-4 mr-2" />
                 <span className="sm:inline">Buscar</span>
               </Button>
@@ -153,7 +153,7 @@ export function BibleSearch({ onVerseSelect }: BibleSearchProps) {
             <label className="text-sm font-medium">Busca específica:</label>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
               <Select value={selectedBook} onValueChange={setSelectedBook}>
-                <SelectTrigger className="text-sm sm:text-base">
+                <SelectTrigger className="text-sm sm:text-base rounded-lg shadow-sm">
                   <SelectValue placeholder="Livro" />
                 </SelectTrigger>
                 <SelectContent>
@@ -166,7 +166,7 @@ export function BibleSearch({ onVerseSelect }: BibleSearchProps) {
               </Select>
 
               <Select value={selectedChapter} onValueChange={setSelectedChapter}>
-                <SelectTrigger className="text-sm sm:text-base">
+                <SelectTrigger className="text-sm sm:text-base rounded-lg shadow-sm">
                   <SelectValue placeholder="Capítulo" />
                 </SelectTrigger>
                 <SelectContent>
@@ -179,7 +179,7 @@ export function BibleSearch({ onVerseSelect }: BibleSearchProps) {
               </Select>
 
               <Select value={selectedVerse} onValueChange={setSelectedVerse}>
-                <SelectTrigger className="text-sm sm:text-base">
+                <SelectTrigger className="text-sm sm:text-base rounded-lg shadow-sm">
                   <SelectValue placeholder="Versículo" />
                 </SelectTrigger>
                 <SelectContent>
@@ -194,7 +194,7 @@ export function BibleSearch({ onVerseSelect }: BibleSearchProps) {
               <Button 
                 onClick={searchSpecificVerse} 
                 disabled={!selectedBook || !selectedChapter || !selectedVerse}
-                className="w-full sm:w-auto text-sm sm:text-base"
+                className="w-full sm:w-auto text-sm sm:text-base rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
               >
                 Buscar
               </Button>
@@ -211,16 +211,16 @@ export function BibleSearch({ onVerseSelect }: BibleSearchProps) {
       )}
 
       {searchResults.length > 0 && (
-        <Card>
-          <CardHeader className="p-4 sm:p-6">
-            <CardTitle className="text-lg sm:text-xl">Resultados</CardTitle>
+        <Card className="shadow-lg border-border/50">
+          <CardHeader className="p-4 sm:p-6 pb-4">
+            <CardTitle className="text-lg sm:text-xl font-semibold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Resultados</CardTitle>
           </CardHeader>
-          <CardContent className="p-4 sm:p-6">
+          <CardContent className="p-4 sm:p-6 pt-0">
             <div className="space-y-3 sm:space-y-4">
               {searchResults.map((verse, index) => (
                 <div
                   key={index}
-                  className="p-3 sm:p-4 border border-border rounded-lg bg-card hover:bg-accent/50 transition-colors"
+                  className="p-3 sm:p-4 border border-border rounded-xl bg-card hover:bg-accent/50 transition-all duration-300 shadow-sm hover:shadow-md"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
                     <div className="flex-1 min-w-0">
@@ -235,7 +235,7 @@ export function BibleSearch({ onVerseSelect }: BibleSearchProps) {
                       size="sm"
                       variant="outline"
                       onClick={() => copyVerse(verse)}
-                      className="flex-shrink-0 w-full sm:w-auto"
+                      className="flex-shrink-0 w-full sm:w-auto rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
                     >
                       {copiedVerse === `${verse.book} ${verse.chapter}:${verse.verse}` ? (
                         <Check className="h-4 w-4 mr-2" />
