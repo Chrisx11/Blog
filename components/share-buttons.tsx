@@ -12,12 +12,8 @@ export function ShareButtons({ devotional }: ShareButtonsProps) {
   const preview = (devotional.content || "").replace(/\s+/g, " ").slice(0, 140) + (devotional.content.length > 140 ? "..." : "");
   const link = typeof window !== "undefined"
     ? `${window.location.origin}/devocional/${devotional.id}`
-    : `/devocional/${devotional.id}` // fallback em SSR
-  const shareText = `${devotional.imageUrl || ''}
-${devotional.title}
-${preview}
-${devotional.verse || ''}
-\n${link}`;
+    : `/devocional/${devotional.id}`;
+  const shareText = `${devotional.title}\n\n${preview}\n${devotional.verse ? `\n${devotional.verse}` : ""}\n\n${link}`;
 
   const handleWhatsAppShare = () => {
     const url = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
