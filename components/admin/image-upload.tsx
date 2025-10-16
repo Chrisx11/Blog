@@ -24,30 +24,25 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      // Validar tipo de arquivo
       if (!file.type.startsWith("image/")) {
         alert("Por favor, selecione apenas arquivos de imagem")
         return
       }
-      // Validar tamanho (máximo 5MB)
       if (file.size > 5 * 1024 * 1024) {
         alert("A imagem deve ter no máximo 5MB")
         return
       }
       setUploading(true)
       try {
-        // Por enquanto, vamos usar uma URL temporária base64
-        const reader = new FileReader()
-        reader.onload = (e) => {
-          const result = e.target?.result as string
-          setPreview(result)
-          onChange(result)
-          setUploading(false)
-        }
-        reader.readAsDataURL(file)
+        const userId = "anon";
+        const url = await uploadImageToSupabase(file, userId)
+        setPreview(url)
+        onChange(url)
       } catch (e) {
-        console.error("Erro detalhado:", e);
-        alert(`Erro ao processar a imagem: ${e instanceof Error ? e.message : 'Erro desconhecido'}`)
+        alert("Erro ao enviar imagem para o Supabase. Por favor, tente novamente.")
+        setPreview("")
+        onChange("")
+      } finally {
         setUploading(false)
       }
     }
@@ -67,7 +62,7 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 max-w-full">
       <div className="flex flex-col sm:flex-row gap-2 mb-4">
         <Button
           type="button"
@@ -92,23 +87,23 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
           <span className="sm:hidden">Upload</span>
         </Button>
       </div>
-
-      {uploadMode === "url" ? (
+      {uploadMode === "url" && (
         <div className="space-y-2">
           <Label htmlFor="imageUrl">URL da Imagem *</Label>
           <Input
             id="imageUrl"
             value={value}
             onChange={(e) => handleUrlChange(e.target.value)}
-            placeholder="/peaceful-landscape.png"
+            placeholder="Ex: https://.../sua_imagem.jpg"
             required
             className="text-sm rounded-lg"
           />
           <p className="text-sm text-muted-foreground">
-            Use /placeholder.svg?height=400&width=800&query=sua descrição para gerar imagens
+            Use URLs de imagens hospedadas no Supabase, Unsplash ou outros serviços.
           </p>
         </div>
-      ) : (
+      )}
+      {uploadMode === "file" && (
         <div className="space-y-2">
           <Label htmlFor="imageFile">Carregar Imagem *</Label>
           <div
@@ -125,14 +120,13 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
             />
             <Upload className="h-8 w-8 sm:h-12 sm:w-12 mx-auto mb-2 sm:mb-4 text-muted-foreground" />
             <p className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">Clique para selecionar uma imagem</p>
-            <p className="text-xs text-muted-foreground">PNG, JPG, WEBP até 5MB</p>
-            {uploading && <p className="text-sm text-primary mt-2">Processando imagem...</p>}
+            <p className="text-xs text-muted-foreground">PNG, JPG, WEBP até 5MB (imagem hospedada no Supabase)</p>
+            {uploading && <p className="text-sm text-primary mt-2">Enviando imagem...</p>}
           </div>
         </div>
       )}
-
       {preview && (
-        <div className="relative rounded-lg overflow-hidden border border-border shadow-lg group">
+        <div className="relative rounded-lg overflow-hidden border border-border shadow-lg group mt-2">
           <div className="relative h-48 w-full">
             <Image src={preview || "/placeholder.svg"} alt="Preview" fill className="object-cover" />
           </div>
@@ -145,9 +139,6 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
           >
             <X className="h-4 w-4" />
           </Button>
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <ImageIcon className="h-12 w-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-          </div>
         </div>
       )}
     </div>
