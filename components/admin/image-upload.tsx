@@ -68,26 +68,28 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
 
   return (
     <div className="space-y-4">
-      <div className="flex gap-2 mb-4">
+      <div className="flex flex-col sm:flex-row gap-2 mb-4">
         <Button
           type="button"
           variant={uploadMode === "url" ? "default" : "outline"}
           size="sm"
           onClick={() => setUploadMode("url")}
-          className="flex-1"
+          className="flex-1 text-xs sm:text-sm h-10 sm:h-9"
         >
-          <Link2 className="h-4 w-4 mr-2" />
-          URL da Imagem
+          <Link2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+          <span className="hidden sm:inline">URL da Imagem</span>
+          <span className="sm:hidden">URL</span>
         </Button>
         <Button
           type="button"
           variant={uploadMode === "file" ? "default" : "outline"}
           size="sm"
           onClick={() => setUploadMode("file")}
-          className="flex-1"
+          className="flex-1 text-xs sm:text-sm h-10 sm:h-9"
         >
-          <Upload className="h-4 w-4 mr-2" />
-          Upload de Arquivo
+          <Upload className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+          <span className="hidden sm:inline">Upload de Arquivo</span>
+          <span className="sm:hidden">Upload</span>
         </Button>
       </div>
 
@@ -100,6 +102,7 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
             onChange={(e) => handleUrlChange(e.target.value)}
             placeholder="/peaceful-landscape.png"
             required
+            className="text-sm rounded-lg"
           />
           <p className="text-sm text-muted-foreground">
             Use /placeholder.svg?height=400&width=800&query=sua descrição para gerar imagens
@@ -109,7 +112,7 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
         <div className="space-y-2">
           <Label htmlFor="imageFile">Carregar Imagem *</Label>
           <div
-            className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer bg-muted/20"
+            className="border-2 border-dashed border-border rounded-lg p-4 sm:p-8 text-center hover:border-primary transition-colors cursor-pointer bg-muted/20"
             onClick={() => fileInputRef.current?.click()}
           >
             <input
@@ -120,9 +123,9 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
               onChange={handleFileChange}
               className="hidden"
             />
-            <Upload className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-            <p className="text-sm text-muted-foreground mb-2">Clique para selecionar uma imagem</p>
-            <p className="text-xs text-muted-foreground">PNG, JPG, WEBP até 5MB (será convertida para base64)</p>
+            <Upload className="h-8 w-8 sm:h-12 sm:w-12 mx-auto mb-2 sm:mb-4 text-muted-foreground" />
+            <p className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">Clique para selecionar uma imagem</p>
+            <p className="text-xs text-muted-foreground">PNG, JPG, WEBP até 5MB</p>
             {uploading && <p className="text-sm text-primary mt-2">Processando imagem...</p>}
           </div>
         </div>

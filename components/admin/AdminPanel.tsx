@@ -70,7 +70,7 @@ export default function AdminPanel() {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen bg-muted/30 flex">
+      <div className="min-h-screen bg-muted/30 flex w-full">
         <Sidebar collapsible="offcanvas" className="bg-gradient-to-b from-card to-card/80 border-r border-border/50 shadow-lg">
           <SidebarHeader className="p-3 sm:p-4">
             <SidebarGroup>
@@ -160,33 +160,35 @@ export default function AdminPanel() {
             </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
-        <SidebarInset className="flex flex-col min-h-screen w-full">
+        <SidebarInset className="flex flex-col min-h-screen w-full" style={{ width: '100%', maxWidth: 'none', flex: '1 1 0%' }}>
           {/* Header responsivo */}
-          <div className="sticky top-0 z-30 bg-card/95 backdrop-blur-sm border-b border-border flex items-center px-3 sm:px-4 h-14 sm:h-16 shadow-sm w-full">
-            <SidebarTrigger className="mr-2 h-8 w-8 sm:h-9 sm:w-9 rounded-lg hover:bg-accent/80 transition-colors" />
-            <span className="text-lg sm:text-xl font-script font-bold text-foreground ml-1 sm:ml-2 tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Admin</span>
-            <div className="flex-1" />
-            {/* Botões de ação no header para mobile */}
-            <div className="flex items-center gap-1 sm:hidden">
-              <button
-                onClick={handleBackToBlog}
-                className="p-2 rounded-lg hover:bg-accent/80 transition-colors shadow-sm"
-                title="Voltar ao Blog"
-              >
-                <ArrowLeft className="h-4 w-4" />
-              </button>
-              <button
-                onClick={handleLogout}
-                className="p-2 rounded-lg hover:bg-destructive/10 hover:text-destructive transition-colors shadow-sm"
-                title="Sair"
-              >
-                <LogOut className="h-4 w-4" />
-              </button>
+          <div className="sticky top-0 z-30 bg-card/95 backdrop-blur-sm border-b border-border h-14 sm:h-16 shadow-sm w-full" style={{ width: '100%', maxWidth: 'none' }}>
+            <div className="flex items-center px-3 sm:px-4 h-full w-full">
+              <SidebarTrigger className="mr-2 h-8 w-8 sm:h-9 sm:w-9 rounded-lg hover:bg-accent/80 transition-colors" />
+              <span className="text-lg sm:text-xl font-script font-bold text-foreground ml-1 sm:ml-2 tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Admin</span>
+              <div className="flex-1" />
+              {/* Botões de ação no header para mobile */}
+              <div className="flex items-center gap-1 sm:hidden">
+                <button
+                  onClick={handleBackToBlog}
+                  className="p-2 rounded-lg hover:bg-accent/80 transition-colors shadow-sm"
+                  title="Voltar ao Blog"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="p-2 rounded-lg hover:bg-destructive/10 hover:text-destructive transition-colors shadow-sm"
+                  title="Sair"
+                >
+                  <LogOut className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           </div>
           
           <main className="flex-1 px-3 py-4 sm:px-4 sm:py-6 md:px-6 lg:px-8 w-full">
-            <div className="w-full">
+            <div className="w-full max-w-none">
               <div className="mb-6 sm:mb-8">
                 <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-1 sm:mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Painel Administrativo</h1>
                 <p className="text-sm sm:text-base text-muted-foreground">Gerencie os devocionais do seu blog</p>

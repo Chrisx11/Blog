@@ -36,7 +36,7 @@ export function DevotionalForm({ devotional, onSubmit, onCancel }: DevotionalFor
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 bg-card p-4 sm:p-6 rounded-xl shadow-lg border border-border/50 max-w-4xl mx-auto">
+    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 bg-card p-4 sm:p-6 rounded-xl shadow-lg border border-border/50">
       <div className="space-y-2">
         <Label htmlFor="title">Título *</Label>
         <Input

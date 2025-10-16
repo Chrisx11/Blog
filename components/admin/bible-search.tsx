@@ -121,7 +121,7 @@ export function BibleSearch({ onVerseSelect }: BibleSearchProps) {
   }
 
   return (
-    <div className="space-y-4 sm:space-y-6 max-w-4xl mx-auto">
+    <div className="space-y-4 sm:space-y-6">
       <Card className="shadow-lg border-border/50">
         <CardHeader className="p-4 sm:p-6 pb-4">
           <CardTitle className="flex items-center gap-2 text-lg sm:text-xl font-semibold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
