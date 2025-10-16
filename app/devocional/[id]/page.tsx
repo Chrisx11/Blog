@@ -41,13 +41,13 @@ export default async function DevotionalPage({ params }: { params: { id: string 
         <title>{devotionalData.title} | Meu Lugar com Ele</title>
         <meta property="og:title" content={devotionalData.title} />
         <meta property="og:description" content={devotionalData.verse || devotionalData.content.slice(0, 120)} />
-        <meta property="og:image" content={devotionalData.imageUrl || '/placeholder.svg'} />
+        <meta property="og:image" content={devotionalData.imageUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4CcxaLx-7mwPbq4A05YAoMvAO-wYqzby1Tw&s'} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://seu-dominio.com/devocional/${devotionalData.id}`} /> {/* TODO: trocar domínio para produção */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={devotionalData.title} />
         <meta name="twitter:description" content={devotionalData.verse || devotionalData.content.slice(0, 120)} />
-        <meta name="twitter:image" content={devotionalData.imageUrl || '/placeholder.svg'} />
+        <meta name="twitter:image" content={devotionalData.imageUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4CcxaLx-7mwPbq4A05YAoMvAO-wYqzby1Tw&s'} />
       </Head>
       <div className="min-h-screen bg-background">
         <div className="container mx-auto px-4 py-8 max-w-4xl animate-in fade-in slide-in-from-bottom-4 duration-700">
