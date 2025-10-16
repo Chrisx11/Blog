@@ -36,14 +36,18 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
       }
       setUploading(true)
       try {
-        // Pode passar o ID do usuário se quiser diferenciar nomes (ajuste conforme necessário)
-        const userId = "anon" // Substitua pelo id real do usuário se houver login
-        const url = await uploadImageToSupabase(file, userId)
-        setPreview(url)
-        onChange(url)
+        // Por enquanto, vamos usar uma URL temporária base64
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          const result = e.target?.result as string
+          setPreview(result)
+          onChange(result)
+          setUploading(false)
+        }
+        reader.readAsDataURL(file)
       } catch (e) {
-        alert("Erro ao fazer upload da imagem no Supabase")
-      } finally {
+        console.error("Erro detalhado:", e);
+        alert(`Erro ao processar a imagem: ${e instanceof Error ? e.message : 'Erro desconhecido'}`)
         setUploading(false)
       }
     }
@@ -117,8 +121,9 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
               className="hidden"
             />
             <Upload className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-            <p className="text-sm text-muted-foreground mb-2">Clique para selecionar ou arraste uma imagem aqui</p>
-            <p className="text-xs text-muted-foreground">PNG, JPG, WEBP até 5MB</p>
+            <p className="text-sm text-muted-foreground mb-2">Clique para selecionar uma imagem</p>
+            <p className="text-xs text-muted-foreground">PNG, JPG, WEBP até 5MB (será convertida para base64)</p>
+            {uploading && <p className="text-sm text-primary mt-2">Processando imagem...</p>}
           </div>
         </div>
       )}

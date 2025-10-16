@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Header onSearch={setSearchQuery} />
-      <main className="container mx-auto px-4 py-12 max-w-4xl">
+      <main className="container mx-auto px-2 sm:px-4 py-8 sm:py-12 max-w-md sm:max-w-6xl">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4 text-balance leading-tight">
             <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Devocionais Diários</span>

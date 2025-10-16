@@ -85,7 +85,7 @@ export function DevotionalCarousel() {
             <Button
               variant="secondary"
               size="sm"
-              className="shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 backdrop-blur-md bg-white/90 hover:bg-white animate-in slide-in-from-bottom-4 duration-700 delay-200"
+              className="shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 backdrop-blur-md bg-white/90 hover:bg-white text-black font-semibold animate-in slide-in-from-bottom-4 duration-700 delay-200"
             >
               Ler Devocional
             </Button>

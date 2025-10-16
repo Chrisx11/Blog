@@ -33,17 +33,33 @@ export function ShareButtons({ devotional }: ShareButtonsProps) {
     <div className="flex flex-col gap-3">
       <p className="text-sm font-medium text-foreground">Compartilhar:</p>
       <div className="flex flex-wrap gap-2">
-        <Button variant="outline" size="sm" onClick={handleWhatsAppShare} className="gap-2 bg-transparent">
+        {/* WhatsApp */}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleWhatsAppShare}
+          className="gap-2 !bg-[#25D366] hover:!bg-[#1DA851] text-white border-none shadow-md"
+        >
           <MessageCircle className="h-4 w-4" />
           WhatsApp
         </Button>
-
-        <Button variant="outline" size="sm" onClick={handleFacebookShare} className="gap-2 bg-transparent">
+        {/* Facebook */}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleFacebookShare}
+          className="gap-2 !bg-[#1877F3] hover:!bg-[#1452a0] text-white border-none shadow-md"
+        >
           <Facebook className="h-4 w-4" />
           Facebook
         </Button>
-
-        <Button variant="outline" size="sm" onClick={handleInstagramShare} className="gap-2 bg-transparent">
+        {/* Instagram */}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleInstagramShare}
+          className="gap-2 bg-gradient-to-tr from-[#F9CE34] via-[#E4405F] to-[#8a3ab9] hover:opacity-90 text-white border-none shadow-md"
+        >
           <Instagram className="h-4 w-4" />
           Instagram
         </Button>
