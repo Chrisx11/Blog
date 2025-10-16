@@ -11,9 +11,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Header onSearch={setSearchQuery} />
-      <main className="container mx-auto px-2 sm:px-4 py-8 sm:py-12 max-w-md sm:max-w-6xl">
+      <main className="container mx-auto px-3 sm:px-4 py-6 sm:py-12 max-w-md sm:max-w-6xl">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4 text-balance leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-foreground mb-4 text-balance leading-tight">
             <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Devocionais Diários</span>
           </h1>
           <p className="text-lg text-muted-foreground text-pretty max-w-2xl mx-auto">Mensagens de fé e inspiração para cada dia, criadas com amor e carinho</p>

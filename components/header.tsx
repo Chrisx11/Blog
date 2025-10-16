@@ -21,9 +21,9 @@ export function Header({ onSearch }: HeaderProps) {
 
   return (
     <header className="border-b border-border bg-card/95 backdrop-blur-sm sticky top-0 z-50 shadow-feminine">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
         <div className="flex items-center justify-between gap-4">
-          <Link href="/" className="text-3xl font-bold text-foreground whitespace-nowrap hover-lift bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+          <Link href="/" className="text-2xl sm:text-3xl font-bold text-foreground whitespace-nowrap hover-lift bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
             <span style={{fontFamily: 'var(--font-dancing-script), "Dancing Script", cursive'}}>Meu Lugar com </span>
             <span style={{fontFamily: 'var(--font-inter), "Inter", sans-serif', fontStyle: 'italic'}}>ELE</span>
           </Link>

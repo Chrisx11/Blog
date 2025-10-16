@@ -64,7 +64,7 @@ export function DevotionalCarousel() {
 
   return (
     <div className="relative w-full overflow-hidden rounded-xl bg-card border border-border/50 shadow-2xl mb-12 group">
-      <div className="relative h-[400px] md:h-[500px]">
+      <div className="relative h-[300px] sm:h-[400px] md:h-[500px]">
         <img
           key={currentIndex}
           src={currentDevotional.imageUrl || "/placeholder.svg"}
@@ -73,9 +73,9 @@ export function DevotionalCarousel() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
-        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white backdrop-blur-sm bg-black/20">
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-10 text-white backdrop-blur-sm bg-black/20">
           <p className="text-sm font-medium mb-3 opacity-90 tracking-wide uppercase">{currentDevotional.date}</p>
-          <h2 className="text-2xl md:text-4xl font-serif font-bold mb-4 text-balance drop-shadow-lg animate-in slide-in-from-bottom-4 duration-700">
+          <h2 className="text-xl sm:text-2xl md:text-4xl font-serif font-bold mb-4 text-balance drop-shadow-lg animate-in slide-in-from-bottom-4 duration-700">
             {currentDevotional.title}
           </h2>
           <p className="text-sm md:text-base italic mb-6 line-clamp-2 text-pretty opacity-95 animate-in slide-in-from-bottom-4 duration-700 delay-100">
