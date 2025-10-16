@@ -9,14 +9,20 @@ interface ShareButtonsProps {
 }
 
 export function ShareButtons({ devotional }: ShareButtonsProps) {
-  const shareUrl = typeof window !== "undefined" ? `${window.location.origin}?devotional=${devotional.id}` : ""
-
-  const shareText = `${devotional.title}\n\n${devotional.verse || ""}`
+  const preview = (devotional.content || "").replace(/\s+/g, " ").slice(0, 140) + (devotional.content.length > 140 ? "..." : "");
+  const link = typeof window !== "undefined"
+    ? `${window.location.origin}/devocional/${devotional.id}`
+    : `/devocional/${devotional.id}` // fallback em SSR
+  const shareText = `${devotional.imageUrl || ''}
+${devotional.title}
+${preview}
+${devotional.verse || ''}
+\n${link}`;
 
   const handleWhatsAppShare = () => {
-    const url = `https://wa.me/?text=${encodeURIComponent(shareText + "\n\n" + shareUrl)}`
-    window.open(url, "_blank")
-  }
+    const url = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+    window.open(url, "_blank");
+  };
 
   const handleFacebookShare = () => {
     const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`
