@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Upload, X, ImageIcon, Link2 } from "lucide-react"
 import Image from "next/image"
+import { uploadImageToSupabase } from "@/lib/utils";
 
 interface ImageUploadProps {
   value: string
@@ -17,9 +18,10 @@ interface ImageUploadProps {
 export function ImageUpload({ value, onChange }: ImageUploadProps) {
   const [uploadMode, setUploadMode] = useState<"url" | "file">("url")
   const [preview, setPreview] = useState<string>(value)
+  const [uploading, setUploading] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
       // Validar tipo de arquivo
@@ -27,21 +29,23 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
         alert("Por favor, selecione apenas arquivos de imagem")
         return
       }
-
       // Validar tamanho (máximo 5MB)
       if (file.size > 5 * 1024 * 1024) {
         alert("A imagem deve ter no máximo 5MB")
         return
       }
-
-      // Criar preview
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        const result = reader.result as string
-        setPreview(result)
-        onChange(result)
+      setUploading(true)
+      try {
+        // Pode passar o ID do usuário se quiser diferenciar nomes (ajuste conforme necessário)
+        const userId = "anon" // Substitua pelo id real do usuário se houver login
+        const url = await uploadImageToSupabase(file, userId)
+        setPreview(url)
+        onChange(url)
+      } catch (e) {
+        alert("Erro ao fazer upload da imagem no Supabase")
+      } finally {
+        setUploading(false)
       }
-      reader.readAsDataURL(file)
     }
   }
 
