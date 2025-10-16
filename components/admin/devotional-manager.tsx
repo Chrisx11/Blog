@@ -71,10 +71,27 @@ export function DevotionalManager({ overrideMode, setOverrideMode }: { overrideM
     if (setOverrideMode) setOverrideMode("list")
   }
 
-  const handleUpdate = (id: string, devotional: Omit<Devotional, "id">) => {
-    setDevotionals(devotionals.map((d) => (d.id === id ? { ...devotional, id } : d)))
-    setEditingDevotional(null)
-  }
+  const handleUpdate = async (id: string, devotional: Omit<Devotional, "id">) => {
+    setError("");
+    // Monta objeto compatível com o schema do banco (snake_case)
+    const devotionalToSave = {
+      ...devotional,
+      image_url: devotional.image_url || devotional.imageUrl || ""
+    };
+    delete devotionalToSave.imageUrl;
+    const { data, error } = await supabase
+      .from("devotionals")
+      .update(devotionalToSave)
+      .eq("id", id)
+      .select()
+      .single();
+    if (error) {
+      setError("Erro ao atualizar devocional: " + error.message);
+      return;
+    }
+    setDevotionals(devotionals.map((d) => (d.id === id ? data : d)));
+    setEditingDevotional(null);
+  };
 
   const handleDelete = (id: string) => {
     if (confirm("Tem certeza que deseja excluir este devocional?")) {
